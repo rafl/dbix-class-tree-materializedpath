@@ -23,7 +23,11 @@ sub materialized_path_columns {
             %{ $args },
         };
 
-        my ($path, $id) = @{ $args }{qw/path_column id_column/};
+        my ($path, $id) = map {
+            confess "required option ${_} not specified"
+                unless exists $args->{$_};
+            $args->{$_};
+        } qw/path_column id_column/;
 
         install_sub({
             into => $class,
