@@ -24,9 +24,7 @@ sub materialized_path_columns {
                 my ($self) = @_;
                 my $parent_id = (split('\.', $self->$path))[-2];
                 return unless defined $parent_id;
-                return $self->result_source->resultset->search_rs({
-                    $id => $parent_id,
-                })->single;
+                return $self->result_source->resultset->find({ $id => $parent_id });
             },
         });
 
