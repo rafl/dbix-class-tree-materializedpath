@@ -15,6 +15,14 @@ sub materialized_path_columns {
     my ($class, $args) = @_;
 
     if ($args) {
+        $args = {
+            parent_rel   => 'parent',
+            parents_rel  => 'parents',
+            children_rel => 'children',
+            siblings_rel => 'siblings',
+            %{ $args },
+        };
+
         my ($path, $id) = @{ $args }{qw/path id/};
 
         install_sub({
