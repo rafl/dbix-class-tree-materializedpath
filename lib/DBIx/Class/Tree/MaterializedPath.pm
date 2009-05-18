@@ -23,7 +23,7 @@ sub materialized_path_columns {
             %{ $args },
         };
 
-        my ($path, $id) = @{ $args }{qw/path id/};
+        my ($path, $id) = @{ $args }{qw/path_column id_column/};
 
         install_sub({
             into => $class,
@@ -124,7 +124,7 @@ sub materialized_path_columns {
 
 sub is_root {
     my ($self) = @_;
-    my ($id, $path) = @{ $self->materialized_path_columns }{qw/id path/};
+    my ($id, $path) = @{ $self->materialized_path_columns }{qw/id_column path_column/};
     return $self->id eq $self->path;
 }
 
@@ -141,7 +141,7 @@ sub is_branch {
 
 sub insert {
     my ($self, @args) = @_;
-    my ($id, $path) = @{ $self->materialized_path_columns }{qw/id path/};
+    my ($id, $path) = @{ $self->materialized_path_columns }{qw/id_column path_column/};
 
     return $self->next::method(@args)
         if $self->$path;

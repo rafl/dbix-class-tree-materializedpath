@@ -20,8 +20,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 
 __PACKAGE__->materialized_path_columns({
-    id           => 'id',
-    path         => 'path',
+    id_column    => 'id',
+    path_column  => 'path',
     parent_rel   => 'parent',
     parents_rel  => 'parents',
     children_rel => 'children',
